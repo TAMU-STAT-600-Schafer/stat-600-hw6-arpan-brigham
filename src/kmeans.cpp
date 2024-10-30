@@ -26,7 +26,7 @@ arma::uvec MyKmeans_c(const arma::mat& X, int K,
       arma::mat dist = 2 * (M * X.t()) -arma::repmat(arma::sum(arma::square(M) , 1), 1, n);
       Y = arma::index_min(dist, 0);
       arma::uvec unique_clusters = arma::unique(Y);  // Extract unique cluster assignments
-    if (unique_clusters.n_elem < static_cast<size_t>(K)) {
+      if (unique_clusters.n_elem < static_cast<size_t>(K)) {
         Rcpp::stop("Choose K correctly");
       }
     group_mat.zeros();
