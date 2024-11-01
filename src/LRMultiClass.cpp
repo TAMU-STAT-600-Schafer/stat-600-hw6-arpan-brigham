@@ -71,16 +71,16 @@ Rcpp::List LRMultiClass_c(const arma::mat& X, const arma::uvec& y, const arma::m
     arma::colvec gradient(p);
     arma::mat lambda_I(p,p);
     lambda_I.eye();
-    lambda_I = lambda_I *lambda;
+    lambda_I = lambda_I * lambda;
     arma::colvec y_k(n);
     arma::colvec diff(n);
     objective[0] = obj(y, beta, lambda, pk, n);
     
     // Newton's method cycle - implement the update EXACTLY numIter iterations
-    for (int i = 1; i < numIter; i++) {
+    for (int i = 1; i < numIter + 1; i++) {
       // Update Beta:
       for (int k = 0; k < K; k++) {
-        y_k = arma::zeros<arma::colvec>(p);
+        y_k = arma::zeros<arma::colvec>(n);
         arma::uvec ind = arma::find(y == k);
         y_k(ind) = arma::ones<arma::colvec>(ind.size());
         diff = pk.col(k) - y_k;
