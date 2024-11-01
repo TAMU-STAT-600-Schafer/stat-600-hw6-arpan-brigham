@@ -65,9 +65,34 @@ Rcpp::List LRMultiClass_c(const arma::mat& X, const arma::uvec& y, const arma::m
     arma::vec objective(numIter + 1); // to store objective values
     
     // Initialize anything else that you may need
+    arma::mat pk = calc_pk_c(X, beta);
+    arma::vec w(n);
+    arma::mat hessian(n,p);
+    arma::colvec gradient(p);
+    arma::mat lambda_I(p,p);
+    lambda_I.eye();
+    lambda_I = lambda_I *lambda;
+    arma::colvec y_k(n);
+    arma::colvec diff(n);
+    objective[0] = obj(y, beta, lambda, pk, n);
     
     // Newton's method cycle - implement the update EXACTLY numIter iterations
-    
+    for (int i = 1; i < numIter + 1; i++) {
+      // Update Beta:
+      for (int k = 0; k < K; k++) {
+        y_k = arma::zeros<arma::colvec>(p);
+        arma::uvec ind = arma::find(y == k);
+        y_k(ind) = arma::ones<arma::colvec>(ind.size());
+        diff = pk.col(k) - y_k;
+        gradient = X.t() * diff + lambda * beta.col(k);
+        w = pk.col(k) % (1 - pk.col(k));
+        hessian = X.t() * (w % X) + lambda_I;
+        beta.col(k) = beta.col(k) - eta * solve(hessian, gradient);
+      }
+      // Within one iteration: perform the update, calculate updated objective function and training/testing errors in %
+      pk = calc_pk_c(X, beta);
+      objective[i] = obj(y, beta, lambda, pk, n);
+    }
     
     // Create named list with betas and objective values
     return Rcpp::List::create(Rcpp::Named("beta") = beta,
