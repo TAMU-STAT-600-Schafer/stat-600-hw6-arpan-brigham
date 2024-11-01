@@ -77,7 +77,7 @@ Rcpp::List LRMultiClass_c(const arma::mat& X, const arma::uvec& y, const arma::m
     objective[0] = obj(y, beta, lambda, pk, n);
     
     // Newton's method cycle - implement the update EXACTLY numIter iterations
-    for (int i = 1; i < numIter + 1; i++) {
+    for (int i = 1; i < numIter; i++) {
       // Update Beta:
       for (int k = 0; k < K; k++) {
         y_k = arma::zeros<arma::colvec>(p);
