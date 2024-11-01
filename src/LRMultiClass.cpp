@@ -21,6 +21,30 @@ double obj(const arma::uvec& y, const arma::mat& beta, const double& lambda,
   return(objective);
 }
 
+// write function to find pk given X and beta:
+// [[Rcpp::export]]
+arma::mat calc_pk_c(const arma::mat& X, const arma::mat& beta){
+  // get exp(Xbeta)
+  arma::mat exp_Xb = exp(X * beta);
+  // get row sums of exp(Xbeta):
+  int nrow = exp_Xb.n_rows;
+  int ncol = exp_Xb.n_cols;
+  arma::vec rowsums(nrow);
+  for(int n = 0; n < nrow; n++){
+    rowsums[n] = arma::sum(exp_Xb.row(n));
+  }
+  
+  // get output pk matrix:
+  arma::mat pk(nrow, ncol);
+  for(int i = 0; i < nrow; i++){
+    for(int j = 0; j < ncol; j++){
+      pk(i, j) = exp_Xb(i, j)/rowsums[i];
+    }
+  }
+  
+  return(pk);
+}
+
 // For simplicity, no test data, only training data, and no error calculation.
 // X - n x p data matrix
 // y - n length vector of classes, from 0 to K-1
