@@ -86,7 +86,7 @@ Rcpp::List LRMultiClass_c(const arma::mat& X, const arma::uvec& y, const arma::m
         diff = pk.col(k) - y_k;
         gradient = X.t() * diff + lambda * beta.col(k);
         w = pk.col(k) % (1 - pk.col(k));
-        hessian = X.t() * (w % X) + lambda_I;
+        hessian = X.t() * (X.each_col() % w) + lambda_I;
         beta.col(k) = beta.col(k) - eta * solve(hessian, gradient);
       }
       // Within one iteration: perform the update, calculate updated objective function and training/testing errors in %
