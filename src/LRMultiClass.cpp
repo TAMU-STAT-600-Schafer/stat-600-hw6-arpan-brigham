@@ -14,7 +14,7 @@ double obj(const arma::uvec& y, const arma::mat& beta, const double& lambda,
            const arma::mat& pk, const int& n){
   double neg_sum_y = 0;
   for(int i = 0; i < n; i++){
-    neg_sum_y = neg_sum_y - log(pk(n, y[i]));
+    neg_sum_y = neg_sum_y - log(pk(i, y[i]));
   }
   double objective = neg_sum_y + (lambda) * arma::accu(beta % beta)/2;
   
