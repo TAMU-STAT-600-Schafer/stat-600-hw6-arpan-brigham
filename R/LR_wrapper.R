@@ -8,7 +8,7 @@
 #' @param lambda 
 #' @param beta_init 
 #'
-#' @return
+#' @return out
 #' @export
 #'
 #' @examples

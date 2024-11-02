@@ -1,15 +1,21 @@
 #' Title
+#' @param a data
+#' @param X - n by p matrix containing n data points to cluster
+#' @param K - integer specifying number of clusters
+#' @param M - (optional) K by p matrix of cluster centers
+#' @param numIter - number of maximal iterations for the algorithm, the default value is 100 
 #'
-#' @param X 
-#' @param K 
-#' @param M 
-#' @param numIter 
-#'
-#' @return Explain return
+#' @return some
 #' @export
 #'
 #' @examples
 #' # Give example
+#' data(iris)
+
+#' Extract only the features (without labels)
+#' X <- as.matrix(iris[, 1:4])  # The first 4 columns are features
+#' K <- 3
+#' result <- MyKmeans(X, K)
 MyKmeans <- function(X, K, M = NULL, numIter = 100){
   
   n = nrow(X) # number of rows in X

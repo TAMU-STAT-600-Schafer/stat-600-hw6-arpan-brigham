@@ -7,20 +7,27 @@
 MyKmeans(X, K, M = NULL, numIter = 100)
 }
 \arguments{
-\item{X}{}
+\item{X}{- n by p matrix containing n data points to cluster}
 
-\item{K}{}
+\item{K}{- integer specifying number of clusters}
 
-\item{M}{}
+\item{M}{- (optional) K by p matrix of cluster centers}
 
-\item{numIter}{}
+\item{numIter}{- number of maximal iterations for the algorithm, the default value is 100}
+
+\item{a}{data}
 }
 \value{
-Explain return
+some
 }
 \description{
 Title
 }
 \examples{
 # Give example
+data(iris)
+Extract only the features (without labels)
+X <- as.matrix(iris[, 1:4])  # The first 4 columns are features
+K <- 3
+result <- MyKmeans(X, K)
 }
