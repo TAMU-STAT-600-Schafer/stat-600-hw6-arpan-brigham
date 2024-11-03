@@ -9,7 +9,7 @@
 // [[Rcpp::depends(RcppArmadillo)]]
 
 // write objective function:
-// [[Rcpp::export]]
+
 double obj(const arma::uvec& y, const arma::mat& beta, const double& lambda,
            const arma::mat& pk, const int& n){
   double neg_sum_y = 0;
@@ -22,7 +22,7 @@ double obj(const arma::uvec& y, const arma::mat& beta, const double& lambda,
 }
 
 // write function to find pk given X and beta:
-// [[Rcpp::export]]
+
 arma::mat calc_pk_c(const arma::mat& X, const arma::mat& beta){
   // get exp(Xbeta)
   arma::mat exp_Xb = exp(X * beta);
