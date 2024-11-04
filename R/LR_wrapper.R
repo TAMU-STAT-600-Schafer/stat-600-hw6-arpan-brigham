@@ -1,12 +1,12 @@
 
-#' Title
+#' Multi-class Logistic Regression
 #'
-#' @param X is a n x p matrix, where p is the number of covariates
-#' @param y is a vector of length n
-#' @param numIter number of iterations to run
-#' @param eta 
-#' @param lambda 
-#' @param beta_init starting value for the beta matrix. Must be pxk where k is the number of groups.
+#' @param X - is a n x p matrix, where p is the number of covariates.
+#' @param y - is a vector of length n.
+#' @param numIter - number of iterations to run.
+#' @param eta - learning rate for the Damped Newton's Algorithm (> 0).
+#' @param lambda - shrinkage parameter. For larger lambda more beta coefficients will be shrunk towards zero.
+#' @param beta_init - starting value for the beta matrix. Must be pxk where k is the number of groups.
 #'
 #' @return out
 #' @export
