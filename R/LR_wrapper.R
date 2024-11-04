@@ -20,9 +20,6 @@ LRMultiClass <- function(X, y, numIter = 50, eta = 0.1, lambda = 1, beta_init = 
   if (unique(X[, 1]) != 1) {
     stop(paste("First column of X is not 1s"))
   }
-  if (unique(Xt[, 1]) != 1) {
-    stop(paste("First column of Xt is not 1s"))
-  }
   # Check for compatibility of dimensions between X and Y
   n <- length(y)
   if (nrow(X) != n) {
@@ -32,20 +29,7 @@ LRMultiClass <- function(X, y, numIter = 50, eta = 0.1, lambda = 1, beta_init = 
       )
     )
   }
-  # Check for compatibility of dimensions between Xt and Yt
-  nt <- length(yt)
-  if (nrow(Xt) != nt) {
-    stop(
-      paste(
-        "Number of observations in yt aren't compatible with number of observations in Xt"
-      )
-    )
-  }
-  # Check for compatibility of dimensions between X and Xt
   p <- ncol(X)
-  if (p != ncol(Xt)) {
-    stop(paste("Number of columns in X don't match Xt"))
-  }
   # Check eta is positive
   if (eta <= 0) {
     stop(paste("Eta isn't positive"))
