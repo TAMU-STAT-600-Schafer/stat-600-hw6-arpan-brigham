@@ -1,4 +1,4 @@
-#' Kmeans C++ implimentation
+#' Kmeans C++ implementation
 #' 
 #' @param X - n by p matrix containing n data points to cluster
 #' @param K - integer specifying number of clusters
