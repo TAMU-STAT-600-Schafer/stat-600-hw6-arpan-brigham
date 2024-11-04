@@ -35,7 +35,7 @@ arma::uvec MyKmeans_c(const arma::mat& X, int K,
     }
     
     // Check for convergence: if M has not changed, break
-    if (arma::approx_equal(M_next, M_previous, "absdiff", 1e-6)) {
+    if (arma::accu(abs(M_next-M_previous)) == 0) { // arma::approx_equal(M_next, M_previous, "absdiff", 1e-17)
       break;
     } else {
       M_previous = M_next;  // Update M_previous to the current M_next
