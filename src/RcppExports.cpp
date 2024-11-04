@@ -11,33 +11,6 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// obj
-double obj(const arma::uvec& y, const arma::mat& beta, const double& lambda, const arma::mat& pk, const int& n);
-RcppExport SEXP _GroupHW_obj(SEXP ySEXP, SEXP betaSEXP, SEXP lambdaSEXP, SEXP pkSEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::uvec& >::type y(ySEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type beta(betaSEXP);
-    Rcpp::traits::input_parameter< const double& >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type pk(pkSEXP);
-    Rcpp::traits::input_parameter< const int& >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(obj(y, beta, lambda, pk, n));
-    return rcpp_result_gen;
-END_RCPP
-}
-// calc_pk_c
-arma::mat calc_pk_c(const arma::mat& X, const arma::mat& beta);
-RcppExport SEXP _GroupHW_calc_pk_c(SEXP XSEXP, SEXP betaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type beta(betaSEXP);
-    rcpp_result_gen = Rcpp::wrap(calc_pk_c(X, beta));
-    return rcpp_result_gen;
-END_RCPP
-}
 // LRMultiClass_c
 Rcpp::List LRMultiClass_c(const arma::mat& X, const arma::uvec& y, const arma::mat& beta_init, int numIter, double eta, double lambda);
 RcppExport SEXP _GroupHW_LRMultiClass_c(SEXP XSEXP, SEXP ySEXP, SEXP beta_initSEXP, SEXP numIterSEXP, SEXP etaSEXP, SEXP lambdaSEXP) {
@@ -70,8 +43,6 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_GroupHW_obj", (DL_FUNC) &_GroupHW_obj, 5},
-    {"_GroupHW_calc_pk_c", (DL_FUNC) &_GroupHW_calc_pk_c, 2},
     {"_GroupHW_LRMultiClass_c", (DL_FUNC) &_GroupHW_LRMultiClass_c, 6},
     {"_GroupHW_MyKmeans_c", (DL_FUNC) &_GroupHW_MyKmeans_c, 4},
     {NULL, NULL, 0}
