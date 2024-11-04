@@ -2,7 +2,7 @@
 % Please edit documentation in R/Kmeans_wrapper.R
 \name{MyKmeans}
 \alias{MyKmeans}
-\title{Title}
+\title{Kmeans C++ implimentation}
 \usage{
 MyKmeans(X, K, M = NULL, numIter = 100)
 }
@@ -16,10 +16,10 @@ MyKmeans(X, K, M = NULL, numIter = 100)
 \item{numIter}{- number of maximal iterations for the algorithm, the default value is 100}
 }
 \value{
-some
+Y - a vector of length n that contains class assignments (0:(K-1)).
 }
 \description{
-Title
+Kmeans C++ implimentation
 }
 \examples{
 # Give example
