@@ -3,7 +3,7 @@ Type: Package
 Title: HW6: Implimentation of K-means and Multiclass logistic regression in C++
 Version: 1.0
 Date: 2020-10-17
-Author: Arpan Ghosh & Brigham Halverson
+Author: Arpan Ghosh and Brigham Halverson
 Maintainer: Brigham Halverson <brighalvy@tamu.edu>
 Description: Implimenentation for the Lloyd algorithm of K-means for a given number of iterations, the function is wrapped in R but the main workings are in C++. It also includes an implimentation for Multi-class logistic regression using damped Newton's method for parameter estimation. Again the overall function is wrapped in R but the implimentation is done in C++ for speed.
 License: GPL (>= 3)

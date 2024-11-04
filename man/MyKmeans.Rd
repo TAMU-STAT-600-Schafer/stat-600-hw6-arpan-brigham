@@ -2,7 +2,7 @@
 % Please edit documentation in R/Kmeans_wrapper.R
 \name{MyKmeans}
 \alias{MyKmeans}
-\title{Kmeans C++ implimentation}
+\title{Kmeans C++ implementation}
 \usage{
 MyKmeans(X, K, M = NULL, numIter = 100)
 }
@@ -19,7 +19,7 @@ MyKmeans(X, K, M = NULL, numIter = 100)
 Y - a vector of length n that contains class assignments (0:(K-1)).
 }
 \description{
-Kmeans C++ implimentation
+Kmeans C++ implementation
 }
 \examples{
 # Give example
