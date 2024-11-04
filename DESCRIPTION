@@ -1,7 +1,7 @@
 Package: GroupHW
 Type: Package
 Title: HW6: Implimentation of K-means and Multiclass logistic regression in C++
-Version: 1.0
+Version: 1.1
 Date: 2020-10-17
 Author: Arpan Ghosh and Brigham Halverson
 Maintainer: Brigham Halverson <brighalvy@tamu.edu>
