@@ -14,8 +14,6 @@ MyKmeans(X, K, M = NULL, numIter = 100)
 \item{M}{- (optional) K by p matrix of cluster centers}
 
 \item{numIter}{- number of maximal iterations for the algorithm, the default value is 100}
-
-\item{a}{data}
 }
 \value{
 some
@@ -26,7 +24,7 @@ Title
 \examples{
 # Give example
 data(iris)
-Extract only the features (without labels)
+# Extract only the features (without labels)
 X <- as.matrix(iris[, 1:4])  # The first 4 columns are features
 K <- 3
 result <- MyKmeans(X, K)

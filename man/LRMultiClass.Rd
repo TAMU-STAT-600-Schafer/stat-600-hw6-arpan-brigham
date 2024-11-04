@@ -2,28 +2,28 @@
 % Please edit documentation in R/LR_wrapper.R
 \name{LRMultiClass}
 \alias{LRMultiClass}
-\title{Title}
+\title{Multi-class Logistic Regression}
 \usage{
 LRMultiClass(X, y, numIter = 50, eta = 0.1, lambda = 1, beta_init = NULL)
 }
 \arguments{
-\item{X}{}
+\item{X}{- is a n x p matrix, where p is the number of covariates.}
 
-\item{y}{}
+\item{y}{- is a vector of length n.}
 
-\item{numIter}{}
+\item{numIter}{- number of iterations to run.}
 
-\item{eta}{}
+\item{eta}{- learning rate for the Damped Newton's Algorithm (> 0).}
 
-\item{lambda}{}
+\item{lambda}{- shrinkage parameter. For larger lambda more beta coefficients will be shrunk towards zero.}
 
-\item{beta_init}{}
+\item{beta_init}{- starting value for the beta matrix. Must be pxk where k is the number of groups.}
 }
 \value{
 out
 }
 \description{
-Title
+Multi-class Logistic Regression
 }
 \examples{
 # Give example
