@@ -1,10 +1,11 @@
-#' Title
+#' Kmeans C++ implimentation
+#' 
 #' @param X - n by p matrix containing n data points to cluster
 #' @param K - integer specifying number of clusters
 #' @param M - (optional) K by p matrix of cluster centers
 #' @param numIter - number of maximal iterations for the algorithm, the default value is 100 
 #'
-#' @return some
+#' @return Y - a vector of length n that contains class assignments (0:(K-1)).
 #' @export
 #'
 #' @examples
