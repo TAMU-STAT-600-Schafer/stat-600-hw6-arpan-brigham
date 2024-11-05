@@ -12,6 +12,13 @@
 #'
 #' @examples
 #' # Give example
+#' data(iris)
+
+#' # Extract only the features (without labels)
+#' X <- as.matrix(cbind(1, iris[, 1:4]))  # Add intercept
+#' y <- as.integer(factor(iris$Species)) - 1  # Convert species to numeric 0, 1, 2
+#' LRMultiClass(X, y)
+#' plot(LRMultiClass(X, y)$objective, type = 'o')
 LRMultiClass <- function(X, y, numIter = 50, eta = 0.1, lambda = 1, beta_init = NULL){
   
   # Compatibility checks from HW3 and initialization of beta_init
