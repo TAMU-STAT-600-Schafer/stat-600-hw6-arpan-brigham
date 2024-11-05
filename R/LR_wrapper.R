@@ -1,4 +1,3 @@
-
 #' Multi-class Logistic Regression
 #'
 #' @param X - is a n x p matrix, where p is the number of covariates.
@@ -17,12 +16,12 @@ LRMultiClass <- function(X, y, numIter = 50, eta = 0.1, lambda = 1, beta_init = 
   
   # Compatibility checks from HW3 and initialization of beta_init
   # Check that the first column of X and Xt are 1s, if not - display appropriate message and stop execution.
-  if (unique(X[, 1]) != 1) {
+  if (unique(X[, 1]) != 1) {         #First column of X should contain all 1
     stop(paste("First column of X is not 1s"))
   }
   # Check for compatibility of dimensions between X and Y
   n <- length(y)
-  if (nrow(X) != n) {
+  if (nrow(X) != n) {           #Check if X contains n rows or not
     stop(
       paste(
         "Number of observations in y aren't compatible with number of observations in X"
@@ -42,7 +41,7 @@ LRMultiClass <- function(X, y, numIter = 50, eta = 0.1, lambda = 1, beta_init = 
   # Check whether beta_init is NULL. If NULL, initialize beta with p x K matrix of zeroes. If not NULL, check for compatibility of dimensions with what has been already supplied.
   K <- length(unique(y))
   if (is.null(beta_init)) {
-    beta_init <- matrix(0, nrow = p, ncol = K)
+    beta_init <- matrix(0, nrow = p, ncol = K)        #Initialize beta a p* k matrix of zeroes
   } else{
     if (p != nrow(beta_init)) {
       stop(paste(
@@ -66,5 +65,6 @@ LRMultiClass <- function(X, y, numIter = 50, eta = 0.1, lambda = 1, beta_init = 
   out = LRMultiClass_c(X = X, y = y, numIter = numIter, eta = eta, lambda = lambda, beta_init = beta_init)
   
   # Return the class assignments
+  #Out is the list of beta's & objective values
   return(out)
 }
