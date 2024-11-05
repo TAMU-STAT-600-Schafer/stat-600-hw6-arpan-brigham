@@ -7,7 +7,7 @@
 #' @param lambda - shrinkage parameter. For larger lambda more beta coefficients will be shrunk towards zero.
 #' @param beta_init - starting value for the beta matrix. Must be pxk where k is the number of groups.
 #'
-#' @return out
+#' @return out - the list of beta's & objective values
 #' @export
 #'
 #' @examples
