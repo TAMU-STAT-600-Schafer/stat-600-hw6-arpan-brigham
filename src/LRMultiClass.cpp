@@ -67,11 +67,11 @@ Rcpp::List LRMultiClass_c(const arma::mat& X, const arma::uvec& y, const arma::m
     arma::vec objective(numIter + 1); // to store objective values
     
     // Initialize anything else that you may need
-    arma::mat pk = calc_pk_c(X, beta);
+    arma::mat pk = calc_pk_c(X, beta);        //P_k value calculation
     arma::vec w(n);
-    arma::mat hessian(n,p);
+    arma::mat hessian(n,p);                  //Initialsation of hessian matrix
     arma::colvec gradient(p);
-    arma::mat lambda_I(p,p);
+    arma::mat lambda_I(p,p);                 //Indicator matrix calculation
     lambda_I.eye();
     lambda_I = lambda_I * lambda;
     arma::colvec y_k(n);
@@ -87,7 +87,8 @@ Rcpp::List LRMultiClass_c(const arma::mat& X, const arma::uvec& y, const arma::m
         y_k(ind) = arma::ones<arma::colvec>(ind.size());
         diff = pk.col(k) - y_k;
         gradient = X.t() * diff + lambda * beta.col(k);
-        w = pk.col(k) % (1 - pk.col(k));
+        //gradient = X.t() * (P.col(j) - indicator_mat.col(j)) + lambda * beta.col(j);
+        w = pk.col(k) % (1 - pk.col(k));              //Calculation of weighted matrix
         hessian = X.t() * (X.each_col() % w) + lambda_I;
         beta.col(k) = beta.col(k) - eta * solve(hessian, gradient);
       }
