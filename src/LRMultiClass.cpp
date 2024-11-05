@@ -26,19 +26,21 @@ double obj(const arma::uvec& y, const arma::mat& beta, const double& lambda,
 arma::mat calc_pk_c(const arma::mat& X, const arma::mat& beta){
   // get exp(Xbeta)
   arma::mat exp_Xb = exp(X * beta);
+  //arma::mat z = X * beta;
+  //arma::mat exp_values = arma::exp(z);
   // get row sums of exp(Xbeta):
   int nrow = exp_Xb.n_rows;
   int ncol = exp_Xb.n_cols;
   arma::vec rowsums(nrow);
   for(int n = 0; n < nrow; n++){
-    rowsums[n] = arma::sum(exp_Xb.row(n));
+    rowsums[n] = arma::sum(exp_Xb.row(n));           //Calculating rowsums
   }
   
   // get output pk matrix:
   arma::mat pk(nrow, ncol);
   for(int i = 0; i < nrow; i++){
     for(int j = 0; j < ncol; j++){
-      pk(i, j) = exp_Xb(i, j)/rowsums[i];
+      pk(i, j) = exp_Xb(i, j)/rowsums[i];            //Calculation of p_k matrix
     }
   }
   
