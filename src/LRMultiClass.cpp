@@ -89,12 +89,13 @@ Rcpp::List LRMultiClass_c(const arma::mat& X, const arma::uvec& y, const arma::m
         gradient = X.t() * diff + lambda * beta.col(k);
         //gradient = X.t() * (P.col(j) - indicator_mat.col(j)) + lambda * beta.col(j);
         w = pk.col(k) % (1 - pk.col(k));              //Calculation of weighted matrix
-        hessian = X.t() * (X.each_col() % w) + lambda_I;
+        hessian = X.t() * (X.each_col() % w) + lambda_I;      //Hessian calculation
+        //arma::mat result = X.t() * (X.each_col() % w) + lambda * arma::eye<arma::mat>(X.n_cols, X.n_cols);
         beta.col(k) = beta.col(k) - eta * solve(hessian, gradient);
       }
       // Within one iteration: perform the update, calculate updated objective function and training/testing errors in %
       pk = calc_pk_c(X, beta);
-      objective[i] = obj(y, beta, lambda, pk, n);
+      objective[i] = obj(y, beta, lambda, pk, n);         //Objective value for this iteration
     }
     
     // Create named list with betas and objective values
