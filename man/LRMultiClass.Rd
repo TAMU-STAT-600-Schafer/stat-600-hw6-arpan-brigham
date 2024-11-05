@@ -20,11 +20,17 @@ LRMultiClass(X, y, numIter = 50, eta = 0.1, lambda = 1, beta_init = NULL)
 \item{beta_init}{- starting value for the beta matrix. Must be pxk where k is the number of groups.}
 }
 \value{
-out
+out - the list of beta's & objective values
 }
 \description{
 Multi-class Logistic Regression
 }
 \examples{
 # Give example
+data(iris)
+# Extract only the features (without labels)
+X <- as.matrix(cbind(1, iris[, 1:4]))  # Add intercept
+y <- as.integer(factor(iris$Species)) - 1  # Convert species to numeric 0, 1, 2
+LRMultiClass(X, y)
+plot(LRMultiClass(X, y)$objective, type = 'o')
 }
