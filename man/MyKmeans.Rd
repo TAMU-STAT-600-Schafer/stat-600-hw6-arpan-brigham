@@ -23,9 +23,15 @@ Kmeans C++ implementation
 }
 \examples{
 # Give example
-data(iris)
-# Extract only the features (without labels)
-X <- as.matrix(iris[, 1:4])  # The first 4 columns are features
+set.seed(234) # Set Seed
+n <- 100
+# Set cluster means:
+mean1 <- 1
+mean2 <- 5
+mean3 <- 10
+# Simulate data:
+X <- matrix(c(rnorm(n, mean1), rnorm(n, mean2), rnorm(n, mean3)), ncol = 1)
 K <- 3
-result <- MyKmeans(X, K)
+# Run Function:
+MyKmeans(X, K)
 }
