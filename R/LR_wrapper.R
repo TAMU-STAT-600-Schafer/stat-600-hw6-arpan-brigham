@@ -7,7 +7,11 @@
 #' @param lambda - shrinkage parameter. For larger lambda more beta coefficients will be shrunk towards zero.
 #' @param beta_init - starting value for the beta matrix. Must be pxk where k is the number of groups.
 #'
-#' @return out - the list of beta's & objective values
+#' @return A list of the following items:
+#' \itemize{
+#'    \item beta - A matrix (p x K) of the estimated coefficients.
+#'    \item objective - A vector of length num_Iter + 1, that includes the objective function at each iteration.
+#'  }
 #' @export
 #'
 #' @examples
