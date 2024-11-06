@@ -10,14 +10,26 @@
 #'
 #' @examples
 #' # Give example
-#' data(iris)
-
-#' # Extract only the features (without labels)
-#' X <- as.matrix(iris[, 1:4])  # The first 4 columns are features
+#' set.seed(234) # Set Seed
+#' n <- 100
+#' # Set cluster means:
+#' mean1 <- 1
+#' mean2 <- 5
+#' mean3 <- 10
+#' # Simulate data:
+#' X <- matrix(c(rnorm(n, mean1), rnorm(n, mean2), rnorm(n, mean3)), ncol = 1)
 #' K <- 3
-#' result <- MyKmeans(X, K)
+#' # Run Function:
+#' MyKmeans(X, K)
 MyKmeans <- function(X, K, M = NULL, numIter = 100){
   
+  # Check to make sure X & K are appropriately provided.
+  if (!is.matrix(X) & !is.data.frame(X)) {
+    stop(paste("X must be a n by p matrix"))
+  }
+  if (!is.matrix(X)) {
+    X <- as.matrix(X)
+  }
   n = nrow(X) # number of rows in X
   
   # Check whether M is NULL or not. If NULL, initialize based on K random points from X. If not NULL, check for compatibility with X dimensions.
