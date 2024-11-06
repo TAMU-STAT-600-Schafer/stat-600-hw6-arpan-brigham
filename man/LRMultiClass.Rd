@@ -20,17 +20,29 @@ LRMultiClass(X, y, numIter = 50, eta = 0.1, lambda = 1, beta_init = NULL)
 \item{beta_init}{- starting value for the beta matrix. Must be pxk where k is the number of groups.}
 }
 \value{
-out - the list of beta's & objective values
+A list of the following items:
+\itemize{
+   \item beta - A matrix (p x K) of the estimated coefficients.
+   \item objective - A vector of length num_Iter + 1, that includes the objective function at each iteration.
+ }
 }
 \description{
 Multi-class Logistic Regression
 }
 \examples{
 # Give example
-data(iris)
-# Extract only the features (without labels)
-X <- as.matrix(cbind(1, iris[, 1:4]))  # Add intercept
-y <- as.integer(factor(iris$Species)) - 1  # Convert species to numeric 0, 1, 2
+set.seed(1234) # set seed
+n <- 30 # set n
+p <- 3 # set number of covariates
+K <- 2 # number of classes
+beta <- matrix(c(2, -.11, .1, 1.5, .1, .01), p, K) # set beta
+X1 <- cbind(rep(1, n/2), runif(n/2, 2, 3), rnorm(n/2)) # set X1
+X2 <- cbind(rep(1, n/2), runif(n/2, -.5, 1), rnorm(n/2, 1)) # set X2
+X <- rbind(X1, X2)
+exp_XB <- exp(X \%*\% beta)
+pk <- exp_XB / rowSums(exp_XB)
+y <- apply(pk, 1, which.max) - 1 # Get simulated y:
+## Apply Function:
 LRMultiClass(X, y)
 plot(LRMultiClass(X, y)$objective, type = 'o')
 }
